@@ -180,3 +180,60 @@ if step < 0:
     mas[step] = n
 print(mas)
 -----------------------------------------------------------------------------------------------
+mas = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+a = mas[0]
+a = a[0]
+for i in mas:
+    for j in i:
+        if j > a:
+            a = j
+print(a)
+-------------------------------------------------------------------------------------------------
+mas = []
+for i in range(5):
+    mas.append([])
+    for j in range(5):
+        if ((i == 0 and j == 0) or (i == 4 and j == 0) or (i == 0 and j == 4) or (i == 4 and j == 4)) or (i == 2 or j == 2) or (i % 2 == 1 and j % 2 == 1):
+            mas[i].append('*')
+        else:
+            mas[i].append(' ')
+for i in mas:
+    for j in i:
+        print(j, end = ' ')
+    print()
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+a = int(input())
+mas = []
+for i in range(a + 1):
+    mas.append([])
+    for j in range(a + 1):
+        mas[i].append(abs(i - j))
+for i in mas:
+    for j in i:
+        print(j, end = ' ')
+    print()
+-------------------------------------------------------------------------------------------------
+a = int(input())
+b = 0
+c = 0
+flag = True
+mas = []
+mas_2 = [[]]
+for _ in range(a):
+    mas.append(input())
+
+a -= 1
+while c < a:
+    if mas[c] == mas[c + 1]:
+        mas_2[b].append(mas[c])
+    else:
+        mas_2[b].append(mas[c])
+        mas_2.append([])
+        b += 1
+    c += 1
+if mas[c] == mas[c - 1]:
+    mas_2[b].append(mas[c])
+else:
+    mas_2[b].append(mas[c])
+print(mas_2)
+---------------------------------------------------------------
