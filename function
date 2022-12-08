@@ -1,0 +1,37 @@
+def drawSquare():
+    s = int(input())
+    for i in range(s):
+        if i == 0 or i == s - 1:
+            print( "* " * s)
+        else:
+            print("* ", " " * (s - 2), " *")
+drawSquare()
+------------------------------------------------------------------------------------------
+def celc_foren(c):
+    return c * 1.8 + 32
+while True:
+    c = int(input())
+    print(celc_foren(c))
+-----------------------------------------------------------------------
+def initials(n, s_n, f_n):
+    return n[0], s_n[0], f_n[0]
+while True:
+    name, s_name, f_name = input().split()
+    print(initials(name, s_name, f_name))
+---------------------------------------------------------------------------------------
+def summa(x):
+    return x * (1 + x) / 2
+while True:
+    n = int(input())
+    print(summa(n))
+-----------------------------------------------------------------------------------------
+def mini(a, b):
+    if a < b:
+        return a
+    else:
+        return b
+while True:
+    a = int(input())
+    b = int(input())
+    print(mini(a, b))
+----------------------------------------------------------------------------------------
