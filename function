@@ -35,3 +35,70 @@ while True:
     b = int(input())
     print(mini(a, b))
 ----------------------------------------------------------------------------------------
+stroke = "abafccra"
+a = 'a'
+def find_all(stroke, a):
+    mas = []
+    for i, j in enumerate(stroke):
+        if j == a:
+            mas.append(i)
+    return mas
+print(find_all(stroke, a))
+------------------------------------------------------------------------------------------------
+def obedinenie(mas1, mas2):
+    mas3 = []
+    for i in mas1:
+        mas3.append(int(i))
+    for i in mas2:
+        mas3.append(int(i))
+    return sort_mas(mas3)
+def sort_mas(mas3):
+    flag = True
+    while flag:
+        flag = False
+        a = len(mas3)
+        for i in range(a - 1):
+            if mas3[i] > mas3[i + 1]:
+                mas3[i], mas3[i + 1] = mas3[i + 1], mas3[i]
+                flag = True
+    return mas3
+mas1 = input()
+mas2 = input()
+print(obedinenie(mas1, mas2))
+-------------------------------------------------------------------------------------
+x = float(input())
+y = float(input())
+def zona(x, y):
+    if x <= 1 and y <= 1:
+        return True
+    else:
+        return False
+if zona(abs(x), abs(y)):
+    print("Yes")
+else:
+    print("No")
+---------------------------------------------------------------------------------------------
+def okruznost(r, x, y):
+    if (((x ** 2) + (y ** 2)) ** 0.5) <= r:
+        return "Yes"
+    else:
+        return "No"
+r = float(input())
+x = float(input())
+y = float(input())
+print(okruznost(r, abs(x), abs(y)))
+-----------------------------------------------------------------------------------------
+def power(a, b):
+    c = a
+    if b > 0:
+        for _ in range(b - 1):
+            a *= c
+    else:
+        a = 1 / a
+        c = a        
+        for _ in range(abs(b) - 1):
+            a *= c
+    return a
+a = int(input())
+b = int(input())
+print(power(a, b))
