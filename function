@@ -25,16 +25,42 @@ while True:
     n = int(input())
     print(summa(n))
 -----------------------------------------------------------------------------------------
-def mini(a, b):
-    if a < b:
-        return a
-    else:
-        return b
-while True:
-    a = int(input())
-    b = int(input())
-    print(mini(a, b))
-----------------------------------------------------------------------------------------
+a = input()
+n = 0
+def glas(a, g):
+    global n
+    for i in a:
+        for j in g:
+            if i == j:
+                print(i * 3)
+                n += 3
+g = "эёуеоаыяию"
+glas(a, g)
+print(n)
+-------------------------------------------------------------------------------------------------
+def fact(n):
+    if n == 0:
+        return 1
+    return n * fact(n - 1)
+n = int(input())
+print(fact(n))
+-------------------------------------------------------------------------------
+def summ(n):
+    if n <= 1:
+        return 1
+    return n + summ(n - 1)
+n = int(input())
+print(summ(n))
+-------------------------------------------------------------------------------------------------------
+count = 20
+def summ(n, count):
+    print(n)
+    if count == 0:
+        return 1
+    return n + summ(n / 2, count - 1)
+n = 1
+print(summ(n, count))
+------------------------------------------------------------------------------------------------------------
 stroke = "abafccra"
 a = 'a'
 def find_all(stroke, a):
