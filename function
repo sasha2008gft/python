@@ -128,3 +128,34 @@ def power(a, b):
 a = int(input())
 b = int(input())
 print(power(a, b))
+------------------------------------------------------------------------------------
+def fact(n):
+    if n > 1:
+        return n * fact(n - 1)
+    else:
+        return n
+n = int(input())
+print(fact(n))
+-------------------------------------------------------------------------------
+def power(a, b):
+    c = a
+    if b == 1:
+        return a
+    else:
+        return c * power(a, b - 1)
+a = int(input())
+b = int(input())
+print(power(a, b))
+----------------------------------------------------------------------
+def fib(n, x, x2):
+    if n == 1:
+        return x
+    elif n == 2:
+        return x2
+    else:
+        return fib(n - 1, x + x2, x)
+n = 10
+x = 1
+x2 = x
+print(fib(n, x, x2))
+----------------------------------------------------------------
