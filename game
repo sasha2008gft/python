@@ -1,0 +1,34 @@
+import os
+import time
+
+karta = ["+ - - - - - - - - - - +",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "|                     |",
+         "+ - - - - - - - - - - +"]
+bomb = [[2,5],[5,2]]
+
+#for i in range(12):
+#    karta.append([])
+#    for j in range(12):
+#        if i == 0 and j == 0 or i == 11 and j == 0 or i == 0 and j == 11 or i == 11 and j == 11:
+#            karta[i].append("+")
+#        elif i == 0 or i == 11:
+#            karta[i].append("-")
+#        elif j == 0 or j == 11:
+#            karta[i].append("|")
+#        else:
+#            karta[i].append(" ")
+
+while True:      
+    for i in karta:
+        print(i)
+    time.sleep(0.5)
+    os.system('cls')
