@@ -1,18 +1,6 @@
 import os, time, sys
 
-""" karta = ["  + - - - - - - - - - - +", """
-"""          "10|                     |", """
-"""          " 9|                     |", """
-"""          " 8|   *           *     |", """
-"""          " 7|                     |", """
-"""          " 6|         *           |", """
-"""          " 5|   *                 |", """
-"""          " 4|             *       |", """
-"""          " 3|                     |", """
-"""          " 2|       *             |", """
-"""          " 1|                 *   |", """
-"""          "  + - - - - - - - - - - +", """
-"""          "    1 2 3 4 5 6 7 8 9 10 "] """
+lose = False
 karta = """
   + - - - - - - - - - - +
 10|                     |
@@ -27,27 +15,71 @@ karta = """
  1| !               *   |
   + - - - - - - - - - - +
     1 2 3 4 5 6 7 8 9 10 """
-#for i in range(12):
-#    karta.append([])
-#    for j in range(12):
-#        if i == 0 and j == 0 or i == 11 and j == 0 or i == 0 and j == 11 or i == 11 and j == 11:
-#            karta[i].append("+")
-#        elif i == 0 or i == 11:
-#            karta[i].append("-")
-#        elif j == 0 or j == 11:
-#            karta[i].append("|")
-#        else:
-#            karta[i].append(" ")
-
+karta_start = karta
 
 while True:      
     print(karta, '\r')
     move = input()
+    a = karta.find("!")
+
+
     if move == 'w':
-        a = karta.find("!")
-        if karta[a - 24] == '*':
-            print("Game Over")
-            break
-        
+
+      if karta[a - 26] == '*' :
+          lose = True
+
+      if karta[a - 26] != '-':
+        karta = karta[:a - 26] + '!' + karta[a - 25:]
+        karta = karta[:a] + ' ' + karta[a + 1:]
+      
+
+    elif move == 's':
+          
+      if karta[a + 26] == '*' :
+          lose = True
+
+      if karta[a + 26] != '-':
+        karta = karta[:a + 26] + '!' + karta[a + 27:]
+        karta = karta[:a] + ' ' + karta[a + 1:]
+    
+
+    elif move == 'a':
+          
+      if karta[a - 2] == '*' :
+          lose = True
+
+      if karta[a - 2] != '|':
+        karta = karta[:a - 2] + '!' + karta[a - 1:]
+        karta = karta[:a] + ' ' + karta[a + 1:]
+    
+
+    elif move == 'd':
+          
+      if karta[a + 2] == '*' :
+          lose = True
+
+      if karta[a + 2] != '|':
+        karta = karta[:a + 2] + '!' + karta[a + 3:]
+        karta = karta[:a] + ' ' + karta[a + 1:]
+    
+
+    if lose:
+      os.system('cls')
+      a = karta.find('!')
+      karta = karta[:a] + 'o' + karta[a + 1:]
+      if karta[a - 1] == ' ':
+        karta = karta[:a - 1] + '.' + karta[a:]
+      if karta[a + 1] == ' ':
+        karta = karta[:a + 1] + '.' + karta[a + 2:]
+      if karta[a - 26] == ' ':
+        karta = karta[:a - 26] + '.' + karta[a - 25:]
+      if karta[a + 26] == ' ':
+        karta = karta[:a + 26] + '.' + karta[a + 27:]
+      print(karta, '\n', "Game Over", '\n', '\n', "start new game?")
+      game = input()
+      if game == "yes":
+        lose = False
+        karta = karta_start
+      else:
+        break
     os.system('cls')
-    #sys.stdout.flush()
