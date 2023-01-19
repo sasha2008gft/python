@@ -1,85 +1,71 @@
 import os, time, sys
 
+x, y = 2, 10
 lose = False
-karta = """
-  + - - - - - - - - - - +
-10|                     |
- 9|                     |
- 8|     *         *     |
- 7|                     |
- 6|         *           |
- 5|   *                 |
- 4|             *       |
- 3|                     |
- 2|       *             |
- 1| !               *   |
-  + - - - - - - - - - - +
-    1 2 3 4 5 6 7 8 9 10 """
-karta_start = karta
+karta = [
+['╔','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','╗'],#0
+['║',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#1
+['║',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#2
+['║',' ',' ',' ',' ',' ','☉',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#3
+['║',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#4
+['║',' ',' ',' ',' ',' ',' ',' ','☉',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#5
+['║',' ',' ',' ','☉',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#6
+['║',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','☉',' ',' ',' ',' ',' ',' ',' ','║'],#7
+['║',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#8
+['║',' ',' ',' ',' ',' ','☉',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','║'],#9
+['║',' ','☺',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','☉',' ',' ',' ','║'],#10
+['╚','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','═','╝'],]#11
+# 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  22
+karta_save = karta
 
-while True:      
-    print(karta, '\r')
-    move = input()
-    a = karta.find("!")
+while True:
+  if lose:
+    karta[y][x] = '☹'
 
+  for i in karta:
+    for j in i:
+      print(j, end = '')
+    print()
 
-    if move == 'w':
+  if lose:
+    print("Game Over", '\n', '\n', "start new game?")
+    game = input()
+    if game == "yes":
+      karta = karta_save
+      x, y = 2, 10
+      lose = False
 
-      if karta[a - 26] == '*' :
-          lose = True
+  move = input()
 
-      if karta[a - 26] != '-':
-        karta = karta[:a - 26] + '!' + karta[a - 25:]
-        karta = karta[:a] + ' ' + karta[a + 1:]
-      
+  if move == 'w':
 
-    elif move == 's':
+    if karta[y - 1][x] == '☉' :
+      lose = True
+    if karta[y - 1][x] != '═':
+      karta[y - 1][x], karta[y][x] = karta[y][x], karta[y - 1][x]
+      y -= 1
+
+  elif move == 's':
           
-      if karta[a + 26] == '*' :
-          lose = True
+    if karta[y + 1][x] == '☉' :
+      lose = True
+    if karta[y + 1][x] != '═':
+      karta[y + 1][x], karta[y][x] = karta[y][x], karta[y + 1][x]
+      y += 1
 
-      if karta[a + 26] != '-':
-        karta = karta[:a + 26] + '!' + karta[a + 27:]
-        karta = karta[:a] + ' ' + karta[a + 1:]
-    
-
-    elif move == 'a':
+  elif move == 'a':
           
-      if karta[a - 2] == '*' :
-          lose = True
+    if karta[y][x - 1] == '☉' :
+      lose = True
+    if karta[y][x - 1] != '║':
+      karta[y][x - 1], karta[y][x] = karta[y][x], karta[y][x - 1]
+      x -= 1
 
-      if karta[a - 2] != '|':
-        karta = karta[:a - 2] + '!' + karta[a - 1:]
-        karta = karta[:a] + ' ' + karta[a + 1:]
-    
+  elif move == 'd':
 
-    elif move == 'd':
-          
-      if karta[a + 2] == '*' :
-          lose = True
-
-      if karta[a + 2] != '|':
-        karta = karta[:a + 2] + '!' + karta[a + 3:]
-        karta = karta[:a] + ' ' + karta[a + 1:]
-    
-
-    if lose:
-      os.system('cls')
-      a = karta.find('!')
-      karta = karta[:a] + 'o' + karta[a + 1:]
-      if karta[a - 1] == ' ':
-        karta = karta[:a - 1] + '.' + karta[a:]
-      if karta[a + 1] == ' ':
-        karta = karta[:a + 1] + '.' + karta[a + 2:]
-      if karta[a - 26] == ' ':
-        karta = karta[:a - 26] + '.' + karta[a - 25:]
-      if karta[a + 26] == ' ':
-        karta = karta[:a + 26] + '.' + karta[a + 27:]
-      print(karta, '\n', "Game Over", '\n', '\n', "start new game?")
-      game = input()
-      if game == "yes":
-        lose = False
-        karta = karta_start
-      else:
-        break
-    os.system('cls')
+    if karta[y][x + 1] == '☉' :
+      lose = True
+    if karta[y][x + 1] != '║':
+      karta[y][x + 1], karta[y][x] = karta[y][x], karta[y][x + 1]
+      x += 1
+  os.system('cls')
