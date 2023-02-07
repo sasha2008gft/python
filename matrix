@@ -1,0 +1,69 @@
+
+def transport(m):
+    a = len(m)
+    b = len(m[0])
+    if a != b :
+        print("Error 1")
+        return 0
+    m_t = []
+    for i in range(a):
+        m_t.append([])
+        for j in range(b):
+            m_t[i].append([])
+            m_t[i][j] = m[a - i - 1][b - j - 1]
+    print('\n' * 3)
+    for i in m_t:
+        for j in i:
+            print(j, end = ' ')
+        print()
+    return m_t
+
+def summa(m, m_t):
+    a = len(m)
+    b = len(m[0])
+    if a != b:
+        print("Error 2")
+        return 0
+    m_s = []
+    for i in range(a):
+            m_s.append([])
+            for j in range(b):
+                m_s[i].append([])
+                m_s[i][j] = m[i][j] + m_t[i][j]
+    print('\n' * 3)
+    for i in m_s:
+        for j in i:
+            print(j, end = ' ')
+        print()
+    return m_s
+
+def mnoz(m_1, m_2):
+    a = len(m_1)
+    b = len(m_2[0])
+    if a == b:
+        for i in range()
+
+m = []
+y, x = int(input()), int(input())
+a, b, c = int(input()), int(input()), int(input())
+
+for i in range(y):
+    m.append([])
+    for j in range (x):
+        m[i].append([])
+        if i == j:
+            m[i][j] = a
+        elif j > i:
+            m[i][j] = b
+        elif j < i:
+            m[i][j] = c
+
+print('\n' * 3)
+for i in m:
+    for j in i:
+        print(j, end = ' ')
+    print()
+
+summa(m, transport(m))
+mnoz(m, transport(m))
+mnoz(transport(m), m)
